@@ -20,7 +20,7 @@ export default new Vuex.Store({
     loadData() {
         var tasksOnStorage = {
           title: window.localStorage.titleTaskData || '',
-          tasks: JSON.parse(window.localStorage.tasks) || []
+          tasks: window.localStorage.tasks ? JSON.parse(window.localStorage.tasks) : []
         }
         this.commit('SET_LOAD_DATA',tasksOnStorage)
     }
