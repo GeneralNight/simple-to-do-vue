@@ -1,32 +1,56 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div id="app" :class="{'darkBack lightText':mode,'lightBack darkText':!mode}">
     <router-view/>
   </div>
 </template>
 
+<script>
+import {mapState} from 'vuex'
+export default {
+computed: {
+  ...mapState(['mode'])
+},
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.lightText {
+  color: #f6f6f6;
 }
 
-#nav {
-  padding: 30px;
+.darkText {
+  color: #272525;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.lightBack {
+  background: #f6f6f6;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+.darkBack {
+  background: #272525;
+}
+
+.lightButton {
+  border: none;
+  border: 2px solid #f6f6f6;
+  color: #f6f6f6;
+  background: transparent;
+  &:hover {
+    background: #f6f6f6;
+    color: #272525;
+    border-color: #f6f6f6;
+  }
+}
+
+.darkButton {
+  border: none;
+  border: 2px solid #272525;
+  color: #272525;
+  background: transparent;
+  &:hover {
+    background: #272525;
+    color: #f6f6f6;
+    border-color: #272525;
   }
 }
 </style>
